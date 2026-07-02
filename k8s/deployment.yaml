@@ -14,9 +14,10 @@ spec:
       labels:
         app: abc-website
     spec:
-      containers:
+        containers:
         - name: abc-website
-          image: <DOCKERHUB_USERNAME>/abc-corporate-website:latest
+          image: abc-corporate-website:latest
+          imagePullPolicy: Never
           ports:
             - containerPort: 80
           readinessProbe:
