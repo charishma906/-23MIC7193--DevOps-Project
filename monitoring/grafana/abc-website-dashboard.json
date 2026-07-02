@@ -1,0 +1,77 @@
+{
+  "title": "ABC Technologies - Website Health Dashboard",
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "30s",
+  "time": { "from": "now-3h", "to": "now" },
+  "panels": [
+    {
+      "id": 1,
+      "title": "Website Availability (1 = UP, 0 = DOWN)",
+      "type": "stat",
+      "gridPos": { "h": 6, "w": 6, "x": 0, "y": 0 },
+      "targets": [
+        { "target": "abc_website.availability", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "red", "value": 0 },
+              { "color": "green", "value": 1 }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "CPU Usage (%)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 9, "x": 6, "y": 0 },
+      "targets": [
+        { "target": "abc_website.host.cpu_usage_percent", "refId": "A" }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Memory Usage (%)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 9, "x": 15, "y": 0 },
+      "targets": [
+        { "target": "abc_website.host.mem_usage_percent", "refId": "A" }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Active Nginx Connections (Network Usage Proxy)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "targets": [
+        { "target": "abc_website.nginx.active_connections", "refId": "A" }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Total Requests Served",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "targets": [
+        { "target": "abc_website.nginx.requests_total", "refId": "A" }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Uptime (Availability over 24h)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 16 },
+      "targets": [
+        { "target": "movingAverage(abc_website.availability, 20)", "refId": "A" }
+      ]
+    }
+  ],
+  "annotations": { "list": [] },
+  "templating": { "list": [] }
+}
