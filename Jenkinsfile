@@ -15,7 +15,7 @@ pipeline {
                 echo 'Building Docker image using Minikube Docker daemon...'
                 bat '''
                 @echo off
-                FOR /F "tokens=*" %%i IN ('"'"'minikube -p minikube docker-env --shell cmd'"'"') DO @%%i
+                FOR /F "tokens=*" %%i IN ('minikube -p minikube docker-env --shell cmd') DO @%%i
                 docker build -t abc-corporate-website:latest .
                 '''
             }
